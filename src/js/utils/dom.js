@@ -1,4 +1,5 @@
 import { AppStorage } from "./dexie.js";
+import { loadListeners } from "../components/hero.card.js";
 
 export class AppDom {
   constructor() {
@@ -34,28 +35,58 @@ export class AppDom {
 
     heroes.forEach((hero) => {
       const col = document.createElement("div");
-      col.classList.add("col-2", "p-2", "rounded-2");
+      col.classList.add(
+        "col-sm",
+        "d-flex",
+        "justify-content-center",
+        "rounded-2",
+        "mt-2"
+      );
 
-      col.innerHTML = `
-            <div class="card">
-                <img src="${hero.portrait}" class="card-img" alt="${hero.name}">
-                <div class="card-body">
-                    <h5 class="card-title">${hero.name}</h5>
-                    <p class="badge bg-warning p-2">${hero.role}</p>
-                    <button onclick="app.appDom.displayHeroDetails('${hero.key}')" class="btn btn-primary">More</button>
-                </div>
-            </div>
-        `;
+      col.innerHTML = `<img src="${hero.portrait}" style="width: 10em; cursor:pointer;" class="border border-dark bg-light rounded-2" alt="${hero.name}" data-heroCard="${hero.key}">`;
 
       container.appendChild(col);
     });
+    loadListeners();
   }
   async displayHeroDetails(hero) {
     const herodetails = await this.storage.getHeroDetails(hero);
+    if (!herodetails) {
+      console.error("Aucun détail trouvé pour ce héros.");
+      return;
+    }
+
     const container = document.getElementById("hero-details");
     container.innerHTML = "";
-    console.log(herodetails);
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="${herodetails.portrait}" class="img-fluid rounded-start" alt="Portrait de ${herodetails.name}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+            <div class="d-flex justify-content-center">
+              <span class="badge bg-dark"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Sécurisation du texte (évite l'injection HTML)
+    card.querySelector(".card-title").textContent = herodetails.name;
+    card.querySelector(".card-text").textContent = herodetails.description;
+    card.querySelector(".badge").textContent = herodetails.role;
+
+    container.appendChild(card);
   }
+
   async displayMapsCard() {
     const maps = await this.storage.getMaps();
     const container = document.getElementById("map-list");
