@@ -1,0 +1,3 @@
+initModule = () => {
+  app.appDom.displayHeroesCard();
+};
