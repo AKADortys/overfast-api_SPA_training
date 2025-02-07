@@ -27,7 +27,8 @@ const loadListeners = () => {
     const heroKey = img.getAttribute("data-heroCard");
     img.addEventListener("click", async () => {
       resetState();
-
+      img.classList.remove("border-dark");
+      img.classList.add("border-danger");
       setTimeout(() => {
         app.appDom.displayHeroDetails(heroKey);
         heroDetails.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -38,5 +39,9 @@ const loadListeners = () => {
 
   const resetState = () => {
     heroDetails.classList.remove("show");
+    heroeImg.forEach((img) => {
+      img.classList.remove("border-danger");
+      img.classList.add("border-dark");
+    });
   };
 };

@@ -20,13 +20,9 @@ export const HeroDetails = async (herodetails) => {
           <div class="card-body">
             <h5 class="card-title">${herodetails.name}</h5>
             <p class="card-text">${herodetails.description}</p>
-            <div class="d-flex justify-content-between mt-2">
+            <p class="text-primary">${herodetails.location}</p>
+            <div class="d-flex justify-content-evenly mt-2">
               <span class="badge bg-dark">${herodetails.role}</span>
-              <span class="badge bg-primary">${herodetails.location}</span>
-            </div>
-            <div class="col-md-4">
-              <h5 class="text-secondary text-center my-2">Hit points</h5>
-              <div id="charthero"></div>
             </div>
           </div>
         </div>
@@ -68,11 +64,15 @@ export const HeroDetails = async (herodetails) => {
           <div class="section mt-2 bg-dark text-info rounded-2 p-2">
             <h6>${chapter.title}</h6>
             <p>${chapter.content}</p>
-            ${chapter.picture ? `<img style="width: 50%;" class="mb-2" src="${chapter.picture}" alt="Illustration de ${chapter.title}">` : ""}
+            ${chapter.picture ? `<img class="mb-2 img-fluid" src="${chapter.picture}" alt="Illustration de ${chapter.title}">` : ""}
           </div>
         `
           )
           .join("")}
+      </div>
+      <div class="col-md-4">
+        <h5 class="text-secondary text-center my-2">Hit points</h5>
+        <div id="charthero"></div>
       </div>
     `;
 
