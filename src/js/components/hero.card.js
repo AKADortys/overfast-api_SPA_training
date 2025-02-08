@@ -10,8 +10,7 @@ export const HeroesCard = async (heroes) => {
       "d-flex",
       "justify-content-center",
       "rounded-2",
-      "mt-2",
-      "fade"
+      "mt-2"
     );
 
     col.innerHTML = `<img src="${hero.portrait}" style="width: 10em; cursor:pointer;" class="border border-dark bg-light rounded-2" alt="${hero.name}" data-heroCard="${hero.key}">`;

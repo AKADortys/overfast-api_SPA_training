@@ -2,13 +2,13 @@ import { AppStorage } from "./dexie.js";
 import { HeroesCard } from "../components/hero.card.js";
 import { HeroDetails } from "../components/hero.details.js";
 import { MapsCard } from "../components/map.card.js";
+import { HeroFilters } from "../components/hero.filters.js";
 
 export class AppDom {
   constructor() {
     this.storage = new AppStorage();
     this.contentElement = document.getElementById("container");
   }
-
   // vider le conteneur
   clearContent() {
     this.contentElement.innerHTML = "";
@@ -17,8 +17,28 @@ export class AppDom {
   updateContent(html) {
     if (typeof html === "string") this.contentElement.innerHTML = html;
   }
+  //filtrer les héros par nom
+  async filterHeroByName(name) {
+    const heroes = await this.storage.getHeroes();
+    const filterHeroes = heroes.filter((hero) =>
+      hero.name.toLowerCase().includes(name.toLowerCase())
+    );
+    HeroesCard(filterHeroes);
+  }
+  // filtrer les héros par rôle
+  async filterHeroByRole(role) {
+    const heroes = await this.storage.getHeroes();
+    const filterHeroes = heroes.filter((hero) => hero.role === role);
+    HeroesCard(filterHeroes);
+  }
+  // afficher les filtres des cartes
+  async displayHeroFilters() {
+    const role = await this.storage.getRoles();
+    HeroFilters(role);
+  }
   // afficher la carte des héros
   async displayHeroesCard() {
+    document.getElementById("heroes-filters-input").value = "";
     const heroes = await this.storage.getHeroes();
     HeroesCard(heroes);
   }
@@ -32,7 +52,6 @@ export class AppDom {
     const maps = await this.storage.getMaps();
     MapsCard(maps);
   }
-
   // exécuter le script d'une page
   executeScript(scriptContent, page) {
     document
