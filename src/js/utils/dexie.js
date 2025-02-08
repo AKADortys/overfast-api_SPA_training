@@ -5,6 +5,7 @@ export class AppStorage {
     this.apiOw = new ApiOw();
     this.db = new Dexie("OverwatchDB");
 
+    // Create the database schema if it doesn't exist yet.
     this.db.version(2).stores({
       heroes: "id",
       maps: "id",
@@ -20,6 +21,7 @@ export class AppStorage {
     this.init();
   }
 
+  // initialise le stockage
   async init() {
     await this.checkAndFetchData();
   }
@@ -35,12 +37,12 @@ export class AppStorage {
   async getGamemodes() {
     return await this.gamemodes.toArray();
   }
+  // Récupère les détails d'un héros depuis le stockage ou l'API si ils ne sont pas déjà présents
   async getHeroDetails(heroId) {
     let details = await this.heroDetails.get(heroId);
 
     if (!details) {
       details = await this.apiOw.getHeroDetails(heroId);
-      console.log("Détails du héros récupérés :", details); // Debug
       if (details) {
         details.id = heroId;
         await this.heroDetails.put(details);
@@ -55,6 +57,7 @@ export class AppStorage {
     return details;
   }
 
+  // Vérifie si les données sont déjà présentes dans le stockage, sinon les récupère depuis l'API
   async checkAndFetchData() {
     try {
       const [heroesCount, mapsCount, gamemodesCount] = await Promise.all([

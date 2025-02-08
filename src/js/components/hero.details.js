@@ -10,19 +10,20 @@ export const HeroDetails = async (herodetails) => {
   const card = document.createElement("div");
   card.className = "card";
 
-  // Carte de présentation du héros
+  // Carte de présentation du héros, graphique
   card.innerHTML = `
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="${herodetails.portrait}" class="img-fluid rounded-start" alt="Portrait de ${herodetails.name}">
+        <h5 class="text-secondary text-center my-2">Hit points</h5>
+        <div id="charthero"></div>
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">${herodetails.name}</h5>
-            <p class="card-text">${herodetails.description}</p>
+            <p class="card-text">${herodetails.story.summary}</p>
             <p class="text-primary">${herodetails.location}</p>
             <div class="d-flex justify-content-evenly mt-2">
-              <span class="badge bg-dark">${herodetails.role}</span>
+              <span class="badge bg-dark">role: ${herodetails.role}</span>
             </div>
           </div>
         </div>
@@ -31,7 +32,7 @@ export const HeroDetails = async (herodetails) => {
 
   container.appendChild(card);
 
-  // Compétences, graphique points de vie, historique
+  // Compétences points de vie, historique
   const elDiv = document.createElement("div");
   elDiv.classList.add("row", "g-0", "bg-dark", "mt-2");
 
@@ -69,10 +70,6 @@ export const HeroDetails = async (herodetails) => {
         `
           )
           .join("")}
-      </div>
-      <div class="col-md-4">
-        <h5 class="text-secondary text-center my-2">Hit points</h5>
-        <div id="charthero"></div>
       </div>
     `;
 

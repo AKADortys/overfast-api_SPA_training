@@ -7,6 +7,7 @@ export class App {
     this.appDom = new AppDom();
   }
 
+  // initialise l'app
   async init() {
     location.href = `#${this.defaultPage}`;
     await this.loadPage(this.defaultPage);
@@ -19,7 +20,9 @@ export class App {
     });
   }
 
+  // charge une page
   async loadPage(page) {
+    // vérifie si la page est déjà en cache
     if (this.cachePages.has(page)) {
       const cachedPage = this.cachePages.get(page);
       this.appDom.updateContent(cachedPage.html);
@@ -36,6 +39,7 @@ export class App {
       return;
     }
 
+    // charge la page HTML et le script associé
     const htmlResponse = await axios
       .get(`src/pages/${page}.html`)
       .catch(() => null);

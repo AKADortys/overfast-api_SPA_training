@@ -10,7 +10,8 @@ export const HeroesCard = async (heroes) => {
       "d-flex",
       "justify-content-center",
       "rounded-2",
-      "mt-2"
+      "mt-2",
+      "fade"
     );
 
     col.innerHTML = `<img src="${hero.portrait}" style="width: 10em; cursor:pointer;" class="border border-dark bg-light rounded-2" alt="${hero.name}" data-heroCard="${hero.key}">`;
@@ -20,6 +21,7 @@ export const HeroesCard = async (heroes) => {
   loadListeners();
 };
 
+//ouverture de la section détails avec les informations du héros
 const loadListeners = () => {
   const heroeImg = document.querySelectorAll("img[data-heroCard]");
   const heroDetails = document.getElementById("hero-details");
@@ -37,6 +39,7 @@ const loadListeners = () => {
     });
   });
 
+  //fermeture de la section détails et réinitialisation des couleurs des images
   const resetState = () => {
     heroDetails.classList.remove("show");
     heroeImg.forEach((img) => {

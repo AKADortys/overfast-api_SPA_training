@@ -1,3 +1,4 @@
+// création de cartes pour les maps
 export const MapsCard = async (maps) => {
   const container = document.getElementById("map-list");
   container.innerHTML = "";
