@@ -63,7 +63,7 @@ export const HeroDetails = async (herodetails) => {
           ?.map(
             (chapter) => `
           <div class="section mt-2 bg-dark text-info rounded-2 p-2">
-            <h6>${chapter.title}</h6>
+            <h6 class="text-warning">${chapter.title}</h6>
             <p>${chapter.content}</p>
             ${chapter.picture ? `<img class="mb-2 img-fluid" src="${chapter.picture}" alt="Illustration de ${chapter.title}">` : ""}
           </div>

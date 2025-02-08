@@ -11,12 +11,14 @@ export class AppStorage {
       maps: "id",
       gamemodes: "id",
       heroDetails: "id",
+      roles: "id",
     });
 
     this.heroes = this.db.heroes;
     this.maps = this.db.maps;
     this.gamemodes = this.db.gamemodes;
     this.heroDetails = this.db.heroDetails;
+    this.roles = this.db.roles;
 
     this.init();
   }
@@ -33,7 +35,9 @@ export class AppStorage {
   async getMaps() {
     return await this.maps.toArray();
   }
-
+  async getRoles() {
+    return await this.roles.toArray();
+  }
   async getGamemodes() {
     return await this.gamemodes.toArray();
   }
@@ -60,11 +64,13 @@ export class AppStorage {
   // Vérifie si les données sont déjà présentes dans le stockage, sinon les récupère depuis l'API
   async checkAndFetchData() {
     try {
-      const [heroesCount, mapsCount, gamemodesCount] = await Promise.all([
-        this.heroes.count(),
-        this.maps.count(),
-        this.gamemodes.count(),
-      ]);
+      const [heroesCount, mapsCount, gamemodesCount, rolesCount] =
+        await Promise.all([
+          this.heroes.count(),
+          this.maps.count(),
+          this.gamemodes.count(),
+          this.roles.count(),
+        ]);
 
       if (heroesCount === 0) {
         const heroes = await this.apiOw.getHeroes();
@@ -91,6 +97,14 @@ export class AppStorage {
           id: mode.name, // Utilise le nom comme identifiant unique
         }));
         await this.gamemodes.bulkPut(formattedGamemodes);
+      }
+      if (rolesCount === 0) {
+        const roles = await this.apiOw.getRoles();
+        const formattedRoles = roles.map((role) => ({
+          ...role,
+          id: role.key, // Utilise le nom comme identifiant unique
+        }));
+        await this.roles.bulkPut(formattedRoles);
       }
     } catch (error) {
       console.error(

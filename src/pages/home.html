@@ -1,1 +1,83 @@
-<div class="container"></div>
+<section>
+  <div class="container">
+    <img
+      src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/11/overwatch-2-illustrated-heroes.jpg?q=50&fit=crop&w=1140&h=&dpr=1.5"
+      alt="GamerantImage gamerant.com"
+      class="img-fluid rounded mx-auto d-block"
+    />
+    <div class="card shadow-lg border-0 fade">
+      <div class="card-body">
+        <h1 class="text-center text-primary">Introduction</h1>
+        <p class="lead">
+          This single-page application (SPA) is built on the
+          <strong>Over-FastAPI</strong> (<a
+            href="https://github.com/TeKrop/overfast-api"
+            target="_blank"
+            >GitHub</a
+          >) to fetch and display data related to the Overwatch universe.
+        </p>
+        <h3 class="text-secondary">Key Technologies:</h3>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>IndexedDB via Dexie</strong>: Local data storage to optimize
+            performance and reduce API calls.
+          </li>
+          <li class="list-group-item">
+            <strong>Bootstrap</strong>: Enhancing the user interface with a
+            responsive and stylish design.
+          </li>
+          <li class="list-group-item">
+            <strong>Fetch API</strong>: Interacting with Over-FastAPI's REST
+            endpoints to dynamically retrieve information.
+          </li>
+        </ul>
+        <p class="mt-3">
+          The project's goal is to efficiently leverage the data provided by
+          Over-FastAPI and present it in a smooth and interactive interface
+          without page reloads.
+        </p>
+      </div>
+    </div>
+    <div class="container mt-5 fade">
+      <div class="card shadow-lg border-0">
+        <div class="card-body">
+          <h1 class="text-center text-primary">Application Architecture</h1>
+          <p class="lead">
+            This application is based on a modular structure where multiple
+            classes interact to manage API requests, data storage, and dynamic
+            DOM rendering.
+          </p>
+
+          <h3 class="text-secondary">📌 Main Structure</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>ApiOw</strong>: Performs HTTP requests to Over-FastAPI via
+              Axios.
+            </li>
+            <li class="list-group-item">
+              <strong>AppStorage</strong>: Uses ApiOw to retrieve and store data
+              in IndexedDB.
+            </li>
+            <li class="list-group-item">
+              <strong>AppDom</strong>: Manages component rendering and retrieves
+              data from AppStorage.
+            </li>
+            <li class="list-group-item">
+              <strong>App</strong>: Instantiates AppDom, handles navigation, and
+              pagination.
+            </li>
+          </ul>
+
+          <h3 class="text-secondary mt-4">📌 UML Diagram</h3>
+          <div class="text-center">
+            <img
+              src="src/assets/images/uml_app_structure.png"
+              alt="UML Diagram"
+              class="img-fluid rounded shadow"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

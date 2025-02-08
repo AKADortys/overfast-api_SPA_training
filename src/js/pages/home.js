@@ -1,4 +1,12 @@
 initModule = () => {
-  console.log("App initialized");
-  // Your app initialization code goes here
+  const elDiv = document.querySelectorAll("section>div>div");
+  console.log(elDiv.length);
+  elDiv.forEach((n, i) => {
+    setTimeout(
+      () => {
+        n.classList.add("show");
+      },
+      500 * (i / 4)
+    ); // affiche avec un délai entre chaque div
+  });
 };

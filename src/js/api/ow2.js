@@ -6,6 +6,7 @@ export class ApiOw {
     this.gameMode = `${this.apiUrl}gamemodes`;
     this.maps = `${this.apiUrl}maps`;
     this.heroDetailsUrl = `${this.heroUrl}/`;
+    this.roles = `${this.apiUrl}roles`;
   }
 
   // récupération des héros
@@ -16,6 +17,11 @@ export class ApiOw {
     } catch (error) {
       console.error(error);
     }
+  }
+  // récupération des rôles
+  async getRoles() {
+    const response = await axios.get(this.roles);
+    return response.data;
   }
 
   // récupération des modes de jeu

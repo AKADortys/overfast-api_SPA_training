@@ -31,8 +31,8 @@ const loadListeners = () => {
       resetState();
       img.classList.remove("border-dark");
       img.classList.add("border-danger");
-      setTimeout(() => {
-        app.appDom.displayHeroDetails(heroKey);
+      setTimeout(async () => {
+        await app.appDom.displayHeroDetails(heroKey);
         heroDetails.scrollIntoView({ behavior: "smooth", block: "start" });
         heroDetails.classList.add("show");
       }, 300);
