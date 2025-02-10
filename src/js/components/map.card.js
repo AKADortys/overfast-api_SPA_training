@@ -2,6 +2,10 @@
 export const MapsCard = async (maps) => {
   const container = document.getElementById("map-list");
   container.innerHTML = "";
+  if (maps.length <= 0) {
+    container.innerHTML = "<p>Aucune carte trouvée.</p>";
+    return;
+  }
   for (const map of maps) {
     const gamemodes = map.gamemodes.map(
       (gamemode) => `<span class="badge bg-primary p-2">${gamemode}</span>`

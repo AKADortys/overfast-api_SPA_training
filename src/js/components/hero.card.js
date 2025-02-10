@@ -1,23 +1,32 @@
-//création des carte de héros avec l'event click pour ouvrir la section détails
 export const HeroesCard = async (heroes) => {
   const container = document.getElementById("heroes-list");
   container.innerHTML = "";
 
-  heroes.forEach((hero) => {
-    const col = document.createElement("div");
-    col.classList.add(
-      "col-sm",
-      "d-flex",
-      "justify-content-center",
-      "rounded-2",
-      "mt-2"
-    );
+  heroes.forEach((hero, index) => {
+    setTimeout(() => {
+      const col = document.createElement("div");
+      col.classList.add(
+        "col-sm",
+        "d-flex",
+        "justify-content-center",
+        "rounded-2",
+        "mt-2",
+        "fade"
+      );
 
-    col.innerHTML = `<img src="${hero.portrait}" style="width: 10em; cursor:pointer;" class="border border-dark bg-light rounded-2" alt="${hero.name}" data-heroCard="${hero.key}">`;
+      col.innerHTML = `<img src="${hero.portrait}" style="width: 10em; cursor:pointer;" class="border border-dark bg-light rounded-2" alt="${hero.name}" data-heroCard="${hero.key}">`;
 
-    container.appendChild(col);
+      container.appendChild(col);
+
+      setTimeout(() => {
+        col.classList.add("show");
+      }, 50);
+    }, index * 50);
   });
-  loadListeners();
+
+  setTimeout(() => {
+    loadListeners();
+  }, heroes.length * 50);
 };
 
 //ouverture de la section détails avec les informations du héros
