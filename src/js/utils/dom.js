@@ -47,6 +47,14 @@ export class AppDom {
     );
     HeroesCard(filterHeroes);
   }
+  // filtrer les cartes par nom
+  async filterMapByName(name) {
+    const maps = await this.storage.getMaps();
+    const filteredMaps = maps.filter((map) =>
+      map.name.toLowerCase().includes(name.toLowerCase())
+    );
+    MapsCard(filteredMaps);
+  }
   // filtrer les héros par rôle
   async filterHeroByRole(role) {
     const heroes = await this.storage.getHeroes();
@@ -76,6 +84,7 @@ export class AppDom {
   }
   // afficher les carte des maps
   async displayMapsCard() {
+    document.getElementById("maps-filters-input").value = "";
     const maps = await this.storage.getMaps();
     MapsCard(maps);
   }

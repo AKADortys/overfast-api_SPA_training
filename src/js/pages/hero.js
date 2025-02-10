@@ -3,6 +3,8 @@ initModule = async () => {
   await app.appDom.displayHeroesCard(); // génerer les cartes héros
   const input = document.getElementById("heroes-filters-input");
   input.addEventListener("input", (e) => {
-    app.appDom.filterHeroByName(e.target.value);
+    setTimeout(() => {
+      app.appDom.filterHeroByName(e.target.value);
+    }, 3000);
   });
 };

@@ -12,7 +12,7 @@ export const GMCard = async (gamemodes) => {
     );
     col.innerHTML = `
           <div class="card bg-white" >
-              <img src="${gm.screenshot}" class="img-fluid" alt="${gm.name}">
+              <img src="${gm.screenshot}" class="img-fluid rounded-2" alt="${gm.name}">
               <div class="card-body bg-light">
                   <h5 class="card-title">${gm.name}</h5>
                   <p class="card-text">${gm.description}</p>
