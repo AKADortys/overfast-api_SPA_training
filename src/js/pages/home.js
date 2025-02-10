@@ -1,6 +1,5 @@
 initModule = () => {
   const elDiv = document.querySelectorAll("section>div>div");
-  console.log(elDiv.length);
   elDiv.forEach((n, i) => {
     setTimeout(
       () => {

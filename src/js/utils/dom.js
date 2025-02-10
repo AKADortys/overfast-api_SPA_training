@@ -4,6 +4,7 @@ import { HeroDetails } from "../components/hero.details.js";
 import { MapsCard } from "../components/map.card.js";
 import { HeroFilters } from "../components/hero.filters.js";
 import { MapFilters } from "../components/map.filters.js";
+import { GMCard } from "../components/gamemode.card.js";
 
 export class AppDom {
   constructor() {
@@ -77,5 +78,10 @@ export class AppDom {
   async displayMapsCard() {
     const maps = await this.storage.getMaps();
     MapsCard(maps);
+  }
+  // afficher les carte des gamemodes
+  async displayGamemodeCard() {
+    const gameModes = await this.storage.getGamemodes();
+    GMCard(gameModes);
   }
 }

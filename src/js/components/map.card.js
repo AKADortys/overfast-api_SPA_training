@@ -12,8 +12,7 @@ export const MapsCard = async (maps) => {
     );
     const col = document.createElement("div");
     col.classList.add(
-      "col-8",
-      "bg-dark",
+      "col-6",
       "p-2",
       "mt-1",
       "rounded-2",

@@ -20,13 +20,13 @@ export const HeroesCard = async (heroes) => {
 
       setTimeout(() => {
         col.classList.add("show");
-      }, 50);
-    }, index * 50);
+      }, 80);
+    }, index * 80);
   });
 
   setTimeout(() => {
     loadListeners();
-  }, heroes.length * 50);
+  }, heroes.length * 80);
 };
 
 //ouverture de la section détails avec les informations du héros
