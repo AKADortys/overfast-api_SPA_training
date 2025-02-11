@@ -17,6 +17,9 @@ export class AppDom {
   }
   // mettre à jour le conteneur avec du HTML
   updateContent(html) {
+    document
+      .querySelector("body")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
     if (typeof html === "string") this.contentElement.innerHTML = html;
   }
   // exécuter le script d'une page

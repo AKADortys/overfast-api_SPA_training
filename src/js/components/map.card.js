@@ -1,4 +1,4 @@
-// création de cartes pour les maps
+// création de cartes pour les maps avec un effet de fade-in différé
 export const MapsCard = async (maps) => {
   const container = document.getElementById("map-list");
   container.innerHTML = "";
@@ -6,7 +6,8 @@ export const MapsCard = async (maps) => {
     container.innerHTML = "<p>Aucune carte trouvée.</p>";
     return;
   }
-  for (const map of maps) {
+
+  maps.forEach((map, index) => {
     const gamemodes = map.gamemodes.map(
       (gamemode) => `<span class="badge bg-primary p-2">${gamemode}</span>`
     );
@@ -17,18 +18,23 @@ export const MapsCard = async (maps) => {
       "mt-1",
       "rounded-2",
       "overflow-hidden",
-      "shadow-lg"
+      "shadow-lg",
+      "fade"
     );
     col.innerHTML = `
-          <div class="card" >
+          <div class="card">
               <img src="${map.screenshot}" class="img" alt="${map.name}">
               <div class="card-body">
                   <h5 class="card-title">${map.name}</h5>
                   <p class="card-text">${map.location}</p>
-                  ${gamemodes}
-                  </div>
-              </div>`;
+                  ${gamemodes.join("")}
+              </div>
+          </div>`;
 
     container.appendChild(col);
-  }
+    // Ajout de la carte avec un délai progressif
+    setTimeout(() => {
+      col.classList.add("show");
+    }, index * 50); // Délai de 200ms entre chaque apparition
+  });
 };
