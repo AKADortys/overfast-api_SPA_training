@@ -1,4 +1,3 @@
-// création de cartes pour les maps avec un effet de fade-in différé
 export const MapsCard = async (maps) => {
   const container = document.getElementById("map-list");
   container.innerHTML = "";
@@ -13,7 +12,7 @@ export const MapsCard = async (maps) => {
     );
     const col = document.createElement("div");
     col.classList.add(
-      "col-6",
+      "col-md-6",
       "p-2",
       "mt-1",
       "rounded-2",
@@ -35,6 +34,6 @@ export const MapsCard = async (maps) => {
     // Ajout de la carte avec un délai progressif
     setTimeout(() => {
       col.classList.add("show");
-    }, index * 50); // Délai de 200ms entre chaque apparition
+    }, index * 50);
   });
 };

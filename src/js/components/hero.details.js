@@ -40,7 +40,7 @@ export const HeroDetails = async (herodetails) => {
       <div class="col-12">
         <table class="table p-2 text-warning table align-middle">
           <thead class="table-light">
-            <tr><th scope="col">Nom</th><th scope="col">Description</th><th scope="col">Icône</th></tr>
+            <tr><th scope="col">Name</th><th scope="col">Description</th><th scope="col">Icon</th></tr>
           </thead>
           <tbody>
             ${herodetails.abilities
@@ -49,7 +49,7 @@ export const HeroDetails = async (herodetails) => {
               <tr class="pt-1">
                 <th scope="row">${ability.name}</th>
                 <td>${ability.description}</td>
-                <td><img style="width: 8em;" class="bg-dark" src="${ability.icon}" alt="${ability.name}"></td>
+                <td><img style="width: 20vw; max-width:8em" class="bg-dark" src="${ability.icon}" alt="${ability.name}"></td>
               </tr>
             `
               )
@@ -57,8 +57,8 @@ export const HeroDetails = async (herodetails) => {
           </tbody>
         </table>
       </div>
-      <div class="col-md-12 bg-light p-2">
-        <h5 class="text-secondary text-center my-2">Historique</h5>
+      <div class="col-md-12 rounded-2 p-2">
+        <h5 class="text-primary text-center my-2">Historic</h5>
         ${herodetails.story?.chapters
           ?.map(
             (chapter) => `
