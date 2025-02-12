@@ -46,10 +46,12 @@ export class AppStorage {
     let details = await this.heroDetails.get(heroId);
 
     if (!details) {
+      console.warn("Chargement des détails du hero");
       details = await this.apiOw.getHeroDetails(heroId);
       if (details) {
         details.id = heroId;
         await this.heroDetails.put(details);
+        console.warn("Hero recup avec succès:", details);
       } else {
         console.error(
           "Erreur : l'API ne renvoie pas de détails valides pour",

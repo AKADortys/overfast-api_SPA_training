@@ -6,7 +6,7 @@ export const HeroesCard = async (heroes) => {
     setTimeout(() => {
       const col = document.createElement("div");
       col.classList.add(
-        "col-md",
+        "col-sm",
         "d-flex",
         "justify-content-center",
         "rounded-2",
@@ -20,10 +20,13 @@ export const HeroesCard = async (heroes) => {
 
       setTimeout(() => {
         col.classList.add("show");
-        loadListeners();
       }, 10);
     }, index * 10);
   });
+
+  setTimeout(() => {
+    loadListeners();
+  }, heroes.length * 200);
 };
 
 //ouverture de la section détails avec les informations du héros

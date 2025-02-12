@@ -1,10 +1,10 @@
-import { AppStorage } from "./dexie.js";
-import { HeroesCard } from "../components/hero.card.js";
-import { HeroDetails } from "../components/hero.details.js";
-import { MapsCard } from "../components/map.card.js";
-import { HeroFilters } from "../components/hero.filters.js";
-import { MapFilters } from "../components/map.filters.js";
-import { GMCard } from "../components/gamemode.card.js";
+import { AppStorage } from "./dexie.js"; //import de la classe AppStorage
+import { HeroesCard } from "../components/hero.card.js"; //composant pour les cartes des héro
+import { HeroDetails } from "../components/hero.details.js"; //composant pour le détails d'une héro
+import { MapsCard } from "../components/map.card.js"; //composant pour les cartes des maps
+import { HeroFilters } from "../components/hero.filters.js"; //composant pour les filtres hero
+import { MapFilters } from "../components/map.filters.js"; //composant pour les filtres des maps
+import { GMCard } from "../components/gamemode.card.js"; //composant pour les cartes des gamemodes
 
 export class AppDom {
   constructor() {
