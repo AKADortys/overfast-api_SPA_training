@@ -2,25 +2,25 @@ import { ApiOw } from "../api/ow2.js";
 
 export class AppStorage {
   constructor() {
-    this.apiOw = new ApiOw();
-    this.db = new Dexie("OverwatchDB");
+    this.apiOw = new ApiOw(); //instance de la classe pour le fetch
+    this.db = new Dexie("OverwatchDB"); //instance de indexdb
 
-    // Create the database schema if it doesn't exist yet.
     this.db.version(2).stores({
       heroes: "id",
       maps: "id",
       gamemodes: "id",
       heroDetails: "id",
       roles: "id",
-    });
+    }); //schema simple mais dexie gère la création des champs non-exitants
 
+    // Création des instances pour les tables de la base de données
     this.heroes = this.db.heroes;
     this.maps = this.db.maps;
     this.gamemodes = this.db.gamemodes;
     this.heroDetails = this.db.heroDetails;
     this.roles = this.db.roles;
 
-    this.init();
+    this.init(); // lancement de la fonction pour recup les données initiales
   }
 
   // initialise le stockage
@@ -28,6 +28,9 @@ export class AppStorage {
     await this.checkAndFetchData();
   }
 
+  // série de fonction pour recup le contenue des table
+
+  //////////////////////////////////////////////////////////////
   async getHeroes() {
     return await this.heroes.toArray();
   }
@@ -41,6 +44,8 @@ export class AppStorage {
   async getGamemodes() {
     return await this.gamemodes.toArray();
   }
+  //////////////////////////////////////////////////////////////
+
   // Récupère les détails d'un héros depuis le stockage ou l'API si ils ne sont pas déjà présents
   async getHeroDetails(heroId) {
     let details = await this.heroDetails.get(heroId);
